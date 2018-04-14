@@ -1,41 +1,49 @@
-document.getElementById("betBtn").addEventListener('click', PlaceBet(), false);
+$(document).ready(function(){
 
-function PlaceBet() {
     
-var money = document.getElementById("betMoney").value;
     
-    var colorBet = document.getElementById("betColor").value;
-    var number = document.getElementById("betNumber").value;
-    
-}
-
-
-document.getElementById("randomWholeNum").addEventListener ( 'click', randomWholeNum(), false);
-
-function randomWholeNum() {
-    
-    var x = Math.floor(Math.random() * 37);
-    var color='';
-    
-    if (x === 0){
-        var color = 'green'; 
-    }
-    else if (x%2 === 0){
-        var color = 'red';
-    }
-    else {
-        var color = 'black';
-    }
+    // Function to generate randkm number and check if corresponds to user input
+    $("#randomWholeNum").click(function(){
         
-    document.getElementById("output").innerHTML = x + ' ' + color;
-     
-}
-
+        var money = parseInt($("#betMoney").val());
+        var userColor = $("#betColor").val();
+        var number = parseInt($("#betNumber").val());
+        
+        //Generate a random number
+        var x = Math.floor(Math.random() * 37);
+        var color='';
+        
+        //Assign a color to each number
+        
+        if (x === 0){
+        var color = 'green';
+        }
+        else if (x%2 === 0){
+            var color = 'red';
+        }
+        else {
+            var color = 'black';
+        }
+        
+        //Check user color input and update WIn
+        
+        if(userColor == color){
+            $("#output1").text(money * 2);
+        }
+        else{
+            $("#output1").text(money * 0);
+        }
+        
+        
+        //Check user number input and update WIn
+        
+        if(number == x){
+            $("#output1").text(money * 36);
+        }
+        else{
+            $("#output1").text(money * 0);
+        }
+    });
     
     
- 
-   
-
-    
-    
-   
+});
